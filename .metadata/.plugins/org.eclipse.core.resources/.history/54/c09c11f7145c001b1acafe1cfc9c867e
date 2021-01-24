@@ -1,0 +1,63 @@
+package com.qa.gridizen.Pages;
+
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
+
+import com.qa.gridigen.base.TestBase;
+import com.qa.gridizen.util.TestUtil;
+
+public class AddCalender extends TestBase {
+	public static JavascriptExecutor js=(JavascriptExecutor)driver;
+	TestUtil testutil=new TestUtil();
+	@FindBy(xpath="//input[@name='eventname']")
+	WebElement eventName;
+	@FindBy(xpath="//input[@name='eventdescription']")
+	WebElement description;
+	@FindBy(xpath="//*[@name='category']")
+	WebElement category;
+	@FindBy(xpath="//mat-option[@tabindex='0']")
+	WebElement maintenance;
+	@FindBy(xpath="//input[@name='propertylinkedevent']")
+	WebElement propertyCheckbox;
+	@FindBy(xpath="//input[@name='property']")
+	WebElement Property;
+	@FindBy(xpath="//mat-option[@tabindex='0']")
+	WebElement propname;
+	@FindBy(xpath="//button[@form='addEventForm']")
+	WebElement addEvent;
+	@FindBy(xpath="//div[@class='cdk-overlay-pane']//mat-option")
+	WebElement one;
+	public AddCalender() {
+		PageFactory.initElements(driver, this);
+	}
+	public void select1() throws InterruptedException {
+		eventName.sendKeys("one");
+		description.sendKeys("hai");
+		category.click();
+		testutil.getSize("//div[@class='cdk-overlay-pane']//mat-option","Marketing");
+		//js.executeScript("arguments[0].click();", propertyCheckbox);
+		//js.executeScript("arguments[0].sendKeys('23');", Property);
+		Property.sendKeys("23");
+		testutil.getSize("//div[@class='cdk-overlay-pane mat-autocomplete-panel-above']//mat-option//i","230 Petticoat Square,London");
+		Thread.sleep(2000);
+		js.executeScript("arguments[0].click();", propname);
+		js.executeScript("arguments[0].click();", addEvent);
+		
+		//Property.sendKeys("23");
+		
+		//propname.click();
+		//addEvent.click();
+		
+		
+	
+
+
+}
+}
